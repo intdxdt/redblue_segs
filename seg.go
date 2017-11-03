@@ -40,7 +40,7 @@ func addSegment(
 			var bseg = blue[bindex]
 
 			//Test if segments intersect
-			if segs.Intersects(seg, bseg) {
+			if segs.Intersects(seg[0], seg[1], bseg[0], bseg[1]) {
 				var ret bool
 				if flip {
 					ret = visit(bindex, index)
