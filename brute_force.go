@@ -1,7 +1,7 @@
 package redblue_segs
 
 import (
-	"github.com/intdxdt/geom/segs"
+	"github.com/intdxdt/segs"
 )
 
 func BruteForce(red, blue [][][]float64) [][]int {

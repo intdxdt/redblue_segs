@@ -2,7 +2,7 @@ package redblue_segs
 
 import (
 	"github.com/intdxdt/math"
-	"github.com/intdxdt/geom/segs"
+	"github.com/intdxdt/segs"
 )
 
 func addSegment(
