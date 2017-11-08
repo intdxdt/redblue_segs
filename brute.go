@@ -1,6 +1,6 @@
 package redblue_segs
 
-type BruteForceList struct {
+type bruteForceList struct {
 	intervals []float64
 	index     []int
 	count     int
@@ -8,15 +8,15 @@ type BruteForceList struct {
 
 //It is silly, but this is faster than doing the right thing for up to a
 //few thousand segments, which hardly occurs in practice.
-func NewBruteForceList(capacity int) *BruteForceList {
-	return &BruteForceList{
+func newBruteForceList(capacity int) *bruteForceList {
+	return &bruteForceList{
 		intervals: make([]float64, 2*capacity), //pool.mallocDouble(2 * capacity)
 		index:     make([]int, capacity),       //pool.mallocInt32(capacity)
 		count:     0,
 	}
 }
 
-func (brt *BruteForceList) insert(lo, hi float64, index int) {
+func (brt *bruteForceList) insert(lo, hi float64, index int) {
 	var count = brt.count
 	brt.index[count] = index
 	brt.intervals[2*count] = lo
@@ -24,7 +24,7 @@ func (brt *BruteForceList) insert(lo, hi float64, index int) {
 	brt.count += 1
 }
 
-func (brt *BruteForceList) remove(index int) {
+func (brt *bruteForceList) remove(index int) {
 	var count = brt.count
 	var rindex = brt.index
 	var intervals = brt.intervals

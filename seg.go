@@ -6,8 +6,8 @@ import (
 )
 
 func addSegment(
-	index int, red [][][]float64, redList *BruteForceList,
-	blue [][][]float64, blueList *BruteForceList,
+	index int, red [][][]float64, redList *bruteForceList,
+	blue [][][]float64, blueList *bruteForceList,
 	visit func(int, int) bool, flip bool) bool {
 	//Look up segment
 	var seg = red[index]
