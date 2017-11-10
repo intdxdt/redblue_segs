@@ -12,15 +12,14 @@ const (
 	REMOVE_BLUE
 )
 
-
-const (
-	x = iota
-	y
-	z
-)
+type event struct {
+	val float64
+	ev  int
+	idx int
+}
 
 //coordinates iterable of points
-type events [][]float64
+type events []*event
 
 //Len for sort interface
 func (o events) Len() int {
@@ -35,18 +34,18 @@ func (o events) Swap(i, j int) {
 //lexical sort of x and y coordinates
 func (o events) Less(i, j int) bool {
 	var a, b = o[i], o[j]
-	var d = a[x] - b[x]
+	var d = a.val - b.val
 
 	//x's are close enough to each other
 	if math.FloatEqual(d, 0) {
-		d = a[y] - b[y]
+		d = float64(a.ev - b.ev)
 	} else {
 		return d < 0
 	}
 
 	//y's are close enough to each other
 	if math.FloatEqual(d, 0) {
-		d = a[z] - b[z]
+		d = float64(a.idx - b.idx)
 	} else {
 		return d < 0
 	}
@@ -54,7 +53,7 @@ func (o events) Less(i, j int) bool {
 	return d < 0
 }
 
-//Inplace Lexicographic sort
+//Lexicographic sort
 func (o events) Sort() {
 	sort.Sort(o)
 }
