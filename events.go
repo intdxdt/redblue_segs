@@ -35,22 +35,22 @@ func (o events) Swap(i, j int) {
 func (o events) Less(i, j int) bool {
 	var a, b = o[i], o[j]
 	var d = a.val - b.val
-
+	var id int
 	//x's are close enough to each other
 	if math.FloatEqual(d, 0) {
-		d = float64(a.ev - b.ev)
+		id = a.ev - b.ev
 	} else {
 		return d < 0
 	}
 
 	//y's are close enough to each other
-	if math.FloatEqual(d, 0) {
-		d = float64(a.idx - b.idx)
+	if id ==  0 {
+		id = a.idx - b.idx
 	} else {
-		return d < 0
+		return id < 0
 	}
 
-	return d < 0
+	return id < 0
 }
 
 //Lexicographic sort
