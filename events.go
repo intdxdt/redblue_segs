@@ -6,10 +6,10 @@ import (
 )
 
 const (
-	CREATE_RED  = iota
-	CREATE_BLUE
-	REMOVE_RED
-	REMOVE_BLUE
+	CreateRED  = iota
+	CreateBLUE
+	RemoveRED
+	RemoveBLUE
 )
 
 type event struct {
@@ -44,7 +44,7 @@ func (o events) Less(i, j int) bool {
 	}
 
 	//y's are close enough to each other
-	if id ==  0 {
+	if id == 0 {
 		id = a.idx - b.idx
 	} else {
 		return id < 0

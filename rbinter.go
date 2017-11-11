@@ -17,13 +17,13 @@ func RedBlueLineSegmentIntersection(red, blue [][][]float64,
 	for i := 0; i < ne; i++ {
 		var ev, index = events[i].ev, events[i].idx
 		switch  ev {
-		case CREATE_RED:
+		case CreateRED:
 			ret = addSegment(index, red, redList, blue, blueList, visit, false)
-		case CREATE_BLUE:
+		case CreateBLUE:
 			ret = addSegment(index, blue, blueList, red, redList, visit, true)
-		case REMOVE_RED:
+		case RemoveRED:
 			redList.remove(index)
-		case REMOVE_BLUE:
+		case RemoveBLUE:
 			blueList.remove(index)
 		}
 		if ret {

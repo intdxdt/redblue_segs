@@ -17,20 +17,20 @@ func prepareEvents(red, blue [][][]float64) []*event {
 		seg = red[i]
 		x, y = seg[0][0], seg[1][0]
 
-		data[ptr] = &event{math.MinF64(x, y), CREATE_RED, i}
+		data[ptr] = &event{math.MinF64(x, y), CreateRED, i}
 		ptr += 1
 
-		data[ptr] = &event{math.MaxF64(x, y), REMOVE_RED, i}
+		data[ptr] = &event{math.MaxF64(x, y), RemoveRED, i}
 		ptr += 1
 	}
 	for i = 0; i < nb; i++ {
 		seg = blue[i]
 		x, y = seg[0][0], seg[1][0]
 
-		data[ptr] = &event{math.MinF64(x, y), CREATE_BLUE, i}
+		data[ptr] = &event{math.MinF64(x, y), CreateBLUE, i}
 		ptr += 1
 
-		data[ptr] = &event{math.MaxF64(x, y), REMOVE_BLUE, i}
+		data[ptr] = &event{math.MaxF64(x, y), RemoveBLUE, i}
 		ptr += 1
 	}
 	events(data).Sort()
