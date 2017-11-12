@@ -5,6 +5,7 @@ import (
 	"fmt"
 	rb "github.com/intdxdt/redblue_segs"
 	rbt "github.com/intdxdt/redblue_segs/test"
+	"github.com/intdxdt/math"
 )
 
 const (
@@ -12,6 +13,7 @@ const (
 	WARM_UP  = 10
 )
 var IntersectBruteForce = rb.BruteForce
+
 type Task struct {
 	name string
 	algo algorFn
@@ -19,8 +21,8 @@ type Task struct {
 type algorFn func([][][]float64, [][][]float64) [][]int
 
 var implementations = []Task{
-	{name: "Brute-force", algo: IntersectBruteForce},
-	{name: "RBLSI", algo: rb.RBIntersection},
+	{name: "Brute-force",   algo: IntersectBruteForce},
+	{name: "RBLSI",         algo: rb.RBIntersection},
 }
 
 func benchmark(red, blue [][][]float64, algo algorFn) []float64 {
@@ -36,7 +38,7 @@ func benchmark(red, blue [][][]float64, algo algorFn) []float64 {
 		count += len(result)
 	}
 	var end = time.Now()
-	return []float64{(end.Sub(start).Seconds() * 1000.0) / float64(NUM_ITER), float64(count)}
+	return []float64{math.Round((end.Sub(start).Seconds() * 1000.0) / float64(NUM_ITER),2), float64(count)}
 }
 
 func main () {

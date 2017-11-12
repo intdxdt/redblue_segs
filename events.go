@@ -46,10 +46,7 @@ func (o events) Less(i, j int) bool {
 	//y's are close enough to each other
 	if id == 0 {
 		id = a.idx - b.idx
-	} else {
-		return id < 0
 	}
-
 	return id < 0
 }
 
