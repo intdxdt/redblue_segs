@@ -2,7 +2,6 @@ package redblue_segs
 
 import (
 	"github.com/intdxdt/math"
-	"github.com/intdxdt/segs"
 )
 
 func addSegment(
@@ -40,7 +39,7 @@ func addSegment(
 			var bseg = blue[bindex]
 
 			//Test if segments intersect
-			if segs.Intersects(seg[0], seg[1], bseg[0], bseg[1]) {
+			if intersects(seg[0], seg[1], bseg[0], bseg[1]) {
 				var ret bool
 				if flip {
 					ret = visit(bindex, index)

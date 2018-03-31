@@ -1,9 +1,5 @@
 package redblue_segs
 
-import (
-	"github.com/intdxdt/segs"
-)
-
 func BruteForce(red, blue [][][]float64) [][]int {
 	var nr = len(red)
 	var nb = len(blue)
@@ -17,7 +13,7 @@ func BruteForce(red, blue [][][]float64) [][]int {
 			bseg := blue[j]
 			//c := bseg[0]
 			//d := bseg[1]
-			if segs.Intersects(rseg[0], rseg[1], bseg[0], bseg[1]) {
+			if intersects(rseg[0], rseg[1], bseg[0], bseg[1]) {
 				crossings = append(crossings, []int{i, j})
 			}
 		}
