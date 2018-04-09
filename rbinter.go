@@ -1,5 +1,8 @@
 package redblue_segs
-
+const (
+	x = iota
+	y
+)
 func RedBlueLineSegmentIntersection(red, blue [][][]float64,
 	visit func(int, int) bool) bool {
 	var nr = len(red)
