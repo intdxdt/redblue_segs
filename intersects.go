@@ -20,7 +20,7 @@ func intersects(sa, sb, oa, ob []float64) bool {
 		if a == 0.0 && b == 0.0 {
 			var o = bbox(oa, ob)
 			var box = bbox(sa, sb)
-			bln = box.Intersects(&o)
+			bln = box.Intersects(o)
 		}
 		return bln
 	}
