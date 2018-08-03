@@ -31,8 +31,9 @@ func intersects(sa, sb, oa, ob []float64) bool {
 }
 
 //envelope of segment
-func bbox(a, b []float64) mbr.MBR {
-	return mbr.CreateMBR(a[x], a[y], b[x], b[y])
+func bbox(a, b []float64) *mbr.MBR {
+	var box = mbr.CreateMBR(a[x], a[y], b[x], b[y])
+	return &box
 }
 
 func segseg_abd(sa, sb, oa, ob []float64) (float64, float64, float64) {

@@ -1,9 +1,9 @@
 package redblue_segs
 
 import (
-	"github.com/franela/goblin"
 	"time"
 	"testing"
+	"github.com/franela/goblin"
 )
 
 func TestEdgeCase(t *testing.T) {
