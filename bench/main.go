@@ -38,13 +38,13 @@ func benchmark(red, blue [][][]float64, algo algorFn) []float64 {
 		count += len(result)
 	}
 	var end = time.Now()
-	return []float64{math.Round((end.Sub(start).Seconds() * 1000.0) / float64(NUM_ITER),2), float64(count)}
+	return []float64{math.Round((end.Sub(start).Seconds() * 1000.0) / float64(NUM_ITER),3), float64(count)}
 }
 
 func main () {
 	for i := 0; i < len(implementations); i++ {
 		impl := implementations[i]
-		fmt.Println("testing", impl.name, "...")
+		fmt.Println("\ntesting", impl.name, "...\n")
 		for j := 0; j < len(rbt.Cases); j++ {
 			fmt.Println("case:", rbt.Cases[j].Name)
 			res := benchmark(rbt.Cases[j].Red, rbt.Cases[j].Blue, impl.algo)

@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	CreateRED  = iota
+	CreateRED   = iota
 	CreateBLUE
 	RemoveRED
 	RemoveBLUE
@@ -19,7 +19,7 @@ type event struct {
 }
 
 //coordinates iterable of points
-type events []*event
+type events []event
 
 //Len for sort interface
 func (o events) Len() int {

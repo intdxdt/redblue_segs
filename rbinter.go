@@ -1,8 +1,10 @@
 package redblue_segs
+
 const (
 	x = iota
 	y
 )
+
 func RedBlueLineSegmentIntersection(red, blue [][][]float64,
 	visit func(int, int) bool) bool {
 	var nr = len(red)
@@ -12,21 +14,19 @@ func RedBlueLineSegmentIntersection(red, blue [][][]float64,
 	var ret bool
 
 	var events = prepareEvents(red, blue)
-	//console.log(unpack(events))
 
-	var redList = newBruteForceList(nr)
-	var blueList = newBruteForceList(nb)
+	var redList  =  createBruteForceList(nr)
+	var blueList = createBruteForceList(nb)
 
 	for i := 0; i < ne; i++ {
 		var ev, index = events[i].ev, events[i].idx
-		switch  ev {
-		case CreateRED:
-			ret = addSegment(index, red, redList, blue, blueList, visit, false)
-		case CreateBLUE:
-			ret = addSegment(index, blue, blueList, red, redList, visit, true)
-		case RemoveRED:
+		if ev == CreateRED {
+			ret = addSegment(index, red, &redList, blue, &blueList, visit, false)
+		} else if ev == CreateBLUE {
+			ret = addSegment(index, blue, &blueList, red, &redList, visit, true)
+		} else if ev == RemoveRED {
 			redList.remove(index)
-		case RemoveBLUE:
+		} else if ev == RemoveBLUE {
 			blueList.remove(index)
 		}
 		if ret {

@@ -8,8 +8,8 @@ type bruteForceList struct {
 
 //It is silly, but this is faster than doing the right thing for up to a
 //few thousand segments, which hardly occurs in practice.
-func newBruteForceList(capacity int) *bruteForceList {
-	return &bruteForceList{
+func createBruteForceList(capacity int) bruteForceList {
+	return bruteForceList{
 		intervals: make([]float64, 2*capacity), //pool.mallocDouble(2 * capacity)
 		index:     make([]int, capacity),       //pool.mallocInt32(capacity)
 		count:     0,
@@ -34,7 +34,7 @@ func (brt *bruteForceList) remove(index int) {
 			intervals[2*i] = intervals[2*(count-1)]
 			intervals[2*i+1] = intervals[2*count-1]
 			brt.count += -1
-			return
+			break
 		}
 	}
 }
