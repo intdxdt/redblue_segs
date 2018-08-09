@@ -36,14 +36,12 @@ func (o events) Less(i, j int) bool {
 	var a, b = o[i], o[j]
 	var d = a.val - b.val
 	var id int
-	//x's are close enough to each other
-	if math.FloatEqual(d, 0) {
+	if d == 0 || math.Abs(d) < math.EPSILON {
 		id = a.ev - b.ev
 	} else {
 		return d < 0
 	}
 
-	//y's are close enough to each other
 	if id == 0 {
 		id = a.idx - b.idx
 	}
