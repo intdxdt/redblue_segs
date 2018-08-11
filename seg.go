@@ -10,44 +10,42 @@ func addSegment(
 	visit func(int, int) bool, flip bool) bool {
 	//Look up segment
 	var seg = red[index]
-
-	//Get segment end points
-	var x0 = seg[0]
-	var x1 = seg[1]
+	var bseg [][]float64
+    //Get segment end points
+    var segA = seg[0]
+    var segB = seg[1]
 
 	//Read out components
-	var a0 = x0[1]
-	var a1 = x1[1]
+	var a0 = segA[1]
+	var a1 = segB[1]
 	var l0 = math.MinF64(a0, a1)
 	var h0 = math.MaxF64(a0, a1)
 
 	//Scan over blue intervals for point
-	var intervals = blueList.intervals
-	var blueIndex = blueList.index
 	var count = blueList.count
 	var ptr = 2 * count
+	var h1, l1 float64
+	var bindex int
+	var ret bool
 
-	for i := count - 1; i >= 0; i-- {
+
+	for i := count - 1;!ret && i >= 0; i-- {
 		ptr += -1
-		var h1 = intervals[ptr]
+		h1 = blueList.intervals[ptr]
 		ptr += -1
-		var l1 = intervals[ptr]
+		l1 = blueList.intervals[ptr]
 
 		//Test if intervals overlap
 		if l0 <= h1 && l1 <= h0 {
-			var bindex = blueIndex[i]
-			var bseg = blue[bindex]
+			bindex = blueList.index[i]
+			bseg = blue[bindex]
 
 			//Test if segments intersect
-			if intersects(seg[0], seg[1], bseg[0], bseg[1]) {
-				var ret bool
+			if intersects(segA, segB, bseg[0], bseg[1]) {
 				if flip {
 					ret = visit(bindex, index)
 				} else {
 					ret = visit(index, bindex)
-				}
-				if ret {
-					return ret
 				}
 			}
 		}

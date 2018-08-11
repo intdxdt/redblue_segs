@@ -12,14 +12,15 @@ func TestEdgeCase(t *testing.T) {
 	g.Describe("vertical edge case", func() {
 		g.It("should test edge case", func() {
 			g.Timeout(1 * time.Hour)
-              var red  = [][][]float64{{ { 224, 328 }, { 224, 331 }} }
-              var blue = [][][]float64{{ { 224, 146 }, { 224, 330 }} }
-              var visit = func  (r, b int ) bool{
-                  g.Assert(true).IsTrue()
-                  return false
-              }
-              RedBlueLineSegmentIntersection(red, blue, visit)
+			var red = [][][]float64{{{224, 328}, {224, 331}}}
+			var blue = [][][]float64{{{224, 146}, {224, 330}}}
+			var bln = false
+			var visit = func(r, b int) bool {
+				bln = true
+				return false
+			}
+			RedBlueLineSegmentIntersection(red, blue, visit)
+			g.Assert(bln).IsTrue()
 		})
 	})
 }
-

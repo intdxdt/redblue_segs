@@ -9,7 +9,9 @@ import (
 //vertices sa, sb, oa, ob
 func intersects(sa, sb, oa, ob []float64) bool {
 	var bln = false
-	var a, b, d = segseg_abd(sa[:], sb[:], oa[:], ob[:])
+	var a = ((ob[0] - oa[0]) * (sa[1] - oa[1])) - ((ob[1] - oa[1]) * (sa[0] - oa[0]))
+	var b = ((sb[0] - sa[0]) * (sa[1] - oa[1])) - ((sb[1] - sa[1]) * (sa[0] - oa[0]))
+	var d = ((ob[1] - oa[1]) * (sb[0] - sa[0])) - ((ob[0] - oa[0]) * (sb[1] - sa[1]))
 
 	//snap to zero if near -0 or 0
 	a = snap_to_zero(a)
@@ -34,22 +36,6 @@ func intersects(sa, sb, oa, ob []float64) bool {
 func bbox(a, b []float64) *mbr.MBR {
 	var box = mbr.CreateMBR(a[x], a[y], b[x], b[y])
 	return &box
-}
-
-func segseg_abd(sa, sb, oa, ob []float64) (float64, float64, float64) {
-	var x1, y1, x2, y2, x3, y3, x4, y4, d, a, b float64
-
-	x1, y1 = sa[x], sa[y]
-	x2, y2 = sb[x], sb[y]
-
-	x3, y3 = oa[x], oa[y]
-	x4, y4 = ob[x], ob[y]
-
-	d = ((y4 - y3) * (x2 - x1)) - ((x4 - x3) * (y2 - y1))
-	a = ((x4 - x3) * (y1 - y3)) - ((y4 - y3) * (x1 - x3))
-	b = ((x2 - x1) * (y1 - y3)) - ((y2 - y1) * (x1 - x3))
-
-	return a, b, d
 }
 
 //clamp to zero if float is near zero

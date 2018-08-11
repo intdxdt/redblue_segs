@@ -13,12 +13,12 @@ const (
 	WARM_UP  = 10
 )
 var IntersectBruteForce = rb.BruteForce
+type algorFn func([][][]float64, [][][]float64) [][]int
 
 type Task struct {
 	name string
 	algo algorFn
 }
-type algorFn func([][][]float64, [][][]float64) [][]int
 
 var implementations = []Task{
 	{name: "Brute-force",   algo: IntersectBruteForce},

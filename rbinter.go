@@ -15,10 +15,10 @@ func RedBlueLineSegmentIntersection(red, blue [][][]float64,
 
 	var events = prepareEvents(red, blue)
 
-	var redList  =  createBruteForceList(nr)
+	var redList = createBruteForceList(nr)
 	var blueList = createBruteForceList(nb)
 
-	for i := 0; i < ne; i++ {
+	for i := 0; !ret && i < ne; i++ {
 		var ev, index = events[i].ev, events[i].idx
 		if ev == CreateRED {
 			ret = addSegment(index, red, &redList, blue, &blueList, visit, false)
@@ -28,9 +28,6 @@ func RedBlueLineSegmentIntersection(red, blue [][][]float64,
 			redList.remove(index)
 		} else if ev == RemoveBLUE {
 			blueList.remove(index)
-		}
-		if ret {
-			break
 		}
 	}
 
